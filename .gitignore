@@ -1,3 +1,10 @@
 # python and venv usual basis
 __pycache__
 env
+
+# project specific files
+img_cache
+
+# Ignore mpeg2dec because its a complete mess
+# I appreciate that the solution is also messy
+third-party/mpeg2dec

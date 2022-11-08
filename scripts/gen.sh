@@ -18,22 +18,25 @@ script_dir=$(dirname "$(readlink -f "$0")")
 root_dir=$(dirname "$script_dir")
 
 # Define mpeg paths and check installation
-mpeg_root_dir="$root_dir/mpeg2dec"
+mpeg_root_dir="$root_dir/third-party/mpeg2dec"
 mpeg_bin="$mpeg_root_dir/src/mpeg2dec"
 if [ ! -e "$mpeg_bin" ]; then
-  cd "$mpeg_root_dir" || { echo "cd failed, does '$mpeg_root_dir' exist ?" && exit 2; }
-  { ./configure && make -j; } || { echo "building mpeg2dec failed" && exit 2; }
-  cd - || { echo "cd -: failed" && exit 2; }
+  cd "$mpeg_root_dir"                                                   \
+    || { echo "cd failed, does '$mpeg_root_dir' exist ?" && exit 2; }
+  { ./configure && make -j; }                           \
+    || { echo "building mpeg2dec failed" && exit 2; }
+  cd -                                      \
+    || { echo "cd -: failed" && exit 2; }
 fi
 
 # Check project data directory
-data_dir="$root_dir/data"
+data_dir="$root_dir/res/data"
 [ ! -e "$data_dir" ] && mkdir -p "$data_dir"
 
 # Execute program
 filename=$(filename="${video_path##*/}" && echo "${filename%.*}")
 img_data_dir="$data_dir/${filename}_imgs"
-[ ! -e "$img_data_dir" ]
+[ ! -e "$img_data_dir" ]                                                    \
     && mkdir -p "$img_data_dir"                                             \
     && cd "$img_data_dir"                                                   \
     && echo "$mpeg_bin -o pgm $mpeg_args $video_path > ../$filename.cfg"    \
