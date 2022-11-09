@@ -1,5 +1,6 @@
 import typing
 from dataclasses import dataclass
+from pathlib import Path
 
 class Metadata(object):
 
@@ -44,8 +45,8 @@ class Metadata(object):
 
     @staticmethod
     def get_file_name(path: str) -> str:
-        file_with_ext = path.rsplit('/', 1)[1]
-        return file_with_ext.rsplit('.', 1)[0]
+        pathObj = Path(path)
+        return pathObj.stem
 
     def _loadSeqMetadata(self, line: str) -> SeqInfo:
         lineType, *args = line.split(' ')
