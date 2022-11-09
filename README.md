@@ -11,25 +11,33 @@ implementing a small video player for interlaced videos.
 The features are:
 - Decode videos to frames and meta-data using a modified mpeg2dec
 - Import image and metadata
-- Store de-interlaced frames with custom algorithm :
+- Compte de-interlaced using numpy and multiprocessing for given methods :
     - none
     - bob
     - temporal
 - Video playback with speed control (fps)
 
-[TODO: video]
-
+https://user-images.githubusercontent.com/9299438/200812576-3838f18d-25d1-48b3-9dd8-cc336110ac50.mp4
 
 ## Setup
 
 ### Tools
 To be able to compile and run the program you need :
+- [Git LFS](https://git-lfs.github.com/) (git large file system)
 - C++ compiler of your choosing
 - [SDL 1](https://www.libsdl.org/) (mpeg2dec dependency)
-- [Python](https://python.org/) (language)
+- [Python 3.9](https://python.org/) (language)
 - [Pip](https://pypi.org/project/pip/) (python dependency manager)
     - numpy
     - opencv
+
+### Setup git lfs
+
+```bash
+42sh$ sudo apt-get install git-lfs  # install git lfs (depends of your platform)
+42sh$ git lfs install               # setup lfs for the cloned project
+42sh$ git lfs pull                  # download large files
+```
 
 ### Installation
 
@@ -46,6 +54,9 @@ Install python requirements in a virtual environment :
 1. Video extraction (frames and meta-data)
 2. Video de-interlacing (custom methods)
 3. Video playback
+
+https://user-images.githubusercontent.com/9299438/200833017-fc38586c-8c4d-4cee-9286-0748ce3d4741.mp4
+
 
 ### Video extration
 
